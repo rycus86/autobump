@@ -47,5 +47,3 @@ jobs:
         - curl -fsSL https://github.com/estesp/manifest-tool/releases/download/v0.7.0/manifest-tool-linux-amd64 > ./manifest-tool
         - chmod +x ./manifest-tool
         - ./manifest-tool push from-spec manifest.yml
-        - ./manifest-tool push from-spec manifest-docker.yml
-
