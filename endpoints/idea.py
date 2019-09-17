@@ -9,7 +9,7 @@ from tasks import slack
 
 @generates_text_response
 def update_intellij_idea(owner, name):
-    new_version, main_version, build_version = parse_jetbrains_product_version(request.json['Name'])
+    new_version, display_version, main_version, build_version = parse_jetbrains_product_version(request.json['Name'])
 
     yield 'Updating to IntelliJ IDEA (%s) %s (%s / %s)\n' % (name, new_version, main_version, build_version)
 
@@ -28,7 +28,7 @@ def update_intellij_idea(owner, name):
     if not diff:
         return abort(Response('Failed to list the changes in %s' % directory, status=500))
 
-    if not git_commit(directory, 'Update to %s (%s)' % (main_version, build_version)):
+    if not git_commit(directory, 'Update to %s (%s)' % (display_version, build_version)):
         return abort(Response('Failed to commit changes in %s' % directory, status=500))
 
     yield 'Updated, difference:\n%s\n' % diff

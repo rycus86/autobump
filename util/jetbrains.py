@@ -8,6 +8,7 @@ def parse_jetbrains_product_version(version):
     #   2019.3 (193.2956.43 eap)
 
     new_version = re.sub(r'(\S+) \((\S+)( .+)?\)', r'\1', version)
+    display_version = new_version
     main_version = re.sub(r'(20[0-9]{2}\.[0-9]+).*', r'\1', new_version)
     build_version = re.sub(r'(\S+) \((\S+)( .+)?\)', r'\2', version)
 
@@ -17,4 +18,4 @@ def parse_jetbrains_product_version(version):
     else:
         build_version = new_version
 
-    return new_version, main_version, build_version
+    return new_version, display_version, main_version, build_version
