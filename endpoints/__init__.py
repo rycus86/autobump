@@ -4,6 +4,9 @@ from docker_helper import read_configuration
 
 
 def check_auth_header():
+    if request.path.startswith('/metrics'):
+        return
+
     auth_key = read_configuration('AUTH_TOKEN', '/var/secrets/autobump', None)
     if not auth_key:
         return
