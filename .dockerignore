@@ -1,0 +1,6 @@
+*
+!requirements.txt
+!server.py
+!endpoints/
+!tasks/
+!util/

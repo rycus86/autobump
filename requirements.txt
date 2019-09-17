@@ -1,0 +1,4 @@
+flask
+requests
+prometheus_flask_exporter
+docker_helper
