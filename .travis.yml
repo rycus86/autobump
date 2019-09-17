@@ -3,11 +3,13 @@ python:
   - '3.7'
 
 install: skip
-script:
-  - docker build -t autobump .
 
 jobs:
   include:
+    - stage: test
+      script:
+        - docker build -t autobump .
+
     - &deploy-stage
       stage: deploy
       if: branch = master AND type = push
