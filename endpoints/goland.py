@@ -64,6 +64,6 @@ def fetch_latest_go_version():
     response = requests.get('https://golang.org/dl/')
     if response.status_code == 200:
         for match in re.finditer(
-                r'<a class="download downloadBox" href="https://dl.google.com/go/go([0-9.]+)\.linux-amd64\.tar\.gz">',
+                r'<a class="download downloadBox" href=".*/go([0-9.]+)\.linux-amd64\.tar\.gz">',
                 response.text):
             return match.group(1)
