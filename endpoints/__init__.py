@@ -1,3 +1,5 @@
+import traceback
+
 from functools import wraps
 from flask import request, abort, Response
 from docker_helper import read_configuration
@@ -26,6 +28,10 @@ def is_dry_run(key):
 def generates_text_response(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-        return Response('\n'.join(part for part in func(*args, **kwargs)), mimetype='text/plain')
+        try:
+            return Response('\n'.join(part for part in func(*args, **kwargs)), mimetype='text/plain')
+        except Exception as ex:
+            traceback.print_exc()
+            raise ex
 
     return decorated
